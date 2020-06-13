@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html mip="#">
+ <head>
+  <meta charset="utf-8" />
+  <meta name="applicable-device" content="pc,mobile" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0" />
+  <link rel="shortcut icon" href="http://db577.cn/favicon.ico" type="image/x-icon" />
+  <title>电视剧频道-好看的电视剧大全-热门电视剧排行榜-中青创最火电视剧快搜</title>
+  <meta name="keywords" content="电影排行榜,电视剧排行榜,热搜电影有哪些,影视快搜,电影大全排行总榜,电影热搜榜排名榜" />
+  <meta name="description" content="中青创电视剧大全，国内外电视剧新剧热剧全覆盖，海量蓝光视听新体验，精彩自制看不停,独播热剧任意看，热血抗战电视剧，快人一步拒绝等待。" />
+  <link rel="stylesheet" type="text/css" href="https://mipcache.bdstatic.com/static/v1/mip.css">
+  <link rel="stylesheet" type="text/css" href="http://db577.cn/style/css/style.css" />
+  <style mip-custom="#"> .s043cda { font-weight: bold; } .s3df0a3 { display: inline; } .mip-carousle-subtitle { display: none; } .pagination .active span{ border: 1px #efefef solid; min-width: 32px; height: 32px; display: inline-block; vertical-align: middle; line-height: 32px; cursor: pointer; margin: 3px; font-size: 12px; padding: 0 8px; background-color: #004FCB; border-color: #004FCB; color: #fff; } mip-vd-tabs .mip-vd-tabs-scroll-touch { padding-bottom: 28px; margin-top: -32px; } ul li.inlinb, li.page-item { display: inline-block; } </style>
+  <link rel="canonical" href="http://db577.cn/tv/" />
+ </head>
+ <body>
+  <header class="header">
+   <section id="header_main" class="header_main">
+    <section class="wrapper">
+     <nav class="header_menu">
+      <ul class="menu">
+       <li class="current-menu-item"><a href="http://db577.cn/" data-type="mip" data- title="首页">首页</a></li>
+       <li><a href="http://db577.cn/movie/" data-type="mip" data-title="电影推荐" title="电影推荐">电影推荐</a></li>
+       <li><a href="http://db577.cn/tv/" data-type="mip" data-title="电视热剧" title="电视热剧">电视热剧</a></li>
+       <li><a href="http://db577.cn/variety/" data-type="mip" data-title="综艺节目" title="综艺节目">综艺节目</a></li>
+       <li><a href="http://db577.cn/comic/" data-type="mip" data-title="必看动漫" title="必看动漫">必看动漫</a></li>
+       <li><a href="http://db577.cn/novel/" data-type="mip" data-title="小说推荐" title="小说推荐">小说推荐</a></li>
+       <li><a href="http://db577.cn/game/" data-type="mip" data-title="游戏达人" title="游戏达人">游戏达人</a></li>
+       <li><a href="http://db577.cn/character/" data-type="mip" data-title="公众人物" title="公众人物">公众人物</a></li>
+       <li><a href="http://db577.cn/automobile/" data-type="mip" data-title="汽车盘点" title="汽车盘点">汽车盘点</a></li>
+       <li><a href="http://db577.cn/life/" data-type="mip" data-title="品味生活" title="品味生活">品味生活</a></li>
+       <li><a href="http://db577.cn/science/" data-type="mip" data-title="最新科技" title="最新科技">最新科技</a></li>
+       <li><a href="http://db577.cn/tourism/" data-type="mip" data-title="旅游时光" title="旅游时光">旅游时光</a></li>
+       <li></li>
+      </ul>
+     </nav>
+     <div class="header_menu header_btn">
+      <ul class="menu">
+       <li class="search"><button on="tap:search.toggle" id="btn-open" role="button" tabindex="0"><i class="icon icon-search-1"></i></button></li>
+      </ul>
+     </div>
+     <button on="tap:menu.toggle" id="btn-open" role="button" tabindex="0" class="btn menu"><i class="icon icon-th-large-outline"></i></button>
+     <a href="http://db577.cn/" class="btn login"><i class="icon icon-user-o"></i></a>
+    </section>
+   </section>
+  </header>
+  <main class="container">
+   <div class="wrapper">
+    <section class="topic_list">
+     <ul class="layout_ul">
+	       <li class="layout_li">
+       <article class="topic_main">
+	   <section class="topic_post">
+	   <a target="_blank" href="#" rel="bookmark" class="thumbs" title="今日剧榜">
+          <mip-img layout="container" src="http://db577.cn/style/images/j12.jpg"></mip-img></a>
+		  <h2><strong>最新今日剧榜</strong></h2>
+         <div class="excerpt">
+        中青创头条今日剧榜频道，拥有丰富的电视剧视频榜单，让您轻松便捷地找到最新最热的互联网视频。
+         </div>
+         <div class="postinfo">
+          <div class="left">
+           <span class="author"><a href="#" ><i class="icon icon-user-1"></i>中青创小编</a></span>
+           <span class="date"><i class="icon icon-calendar-1"></i><b><?php echo date("Y-m-d H:i",time()); ?></b></span>
+          </div>
+          <div class="right">
+           <span class="view"><i class="icon icon-eye-1"></i><b>760630</b></span>
+          </div>
+         </div>
+        </section>
+		   <ul class="middle-text1"> <?php 
+	     $topkey = huoduan_get_baidu_top($huoduan['hotcachetime'],4);
+		 for($i=0;$i<30;$i++){
+			 if(strlen($topkey[$i])>0){
+			echo ' <li><span class="num'.$numclass.'"></span><a target="_blank" href="'.huoduansourl($topkey[$i]).'">'.$topkey[$i].'</a></li>'; 	} 
+		 }
+	 ?></ul>
+       </article></li>
+      <li class="layout_li">
+       <article class="topic_main">
+	   <section class="topic_post">
+	   <a target="_blank" href="#" rel="bookmark" class="thumbs" title="偶像剧">
+          <mip-img layout="container" src="http://db577.cn/style/images/j1.jpg"></mip-img></a>
+		  <h2><strong>最新偶像剧</strong></h2>
+         <div class="excerpt">
+        中青创头条偶像剧频道，浪漫的故事情节，帅气美丽的男女主角为艺术表演的一种形式，受众为青少年喜爱。
+         </div>
+         <div class="postinfo">
+          <div class="left">
+           <span class="author"><a href="#" ><i class="icon icon-user-1"></i>中青创小编</a></span>
+           <span class="date"><i class="icon icon-calendar-1"></i><b><?php echo date("Y-m-d H:i",time()); ?></b></span>
+          </div>
+          <div class="right">
+           <span class="view"><i class="icon icon-eye-1"></i><b>760630</b></span>
+          </div>
+         </div>
+        </section>
+		   <ul class="middle-text1"> <?php 
+	     $topkey = huoduan_get_baidu_top($huoduan['hotcachetime'],349);
+		 for($i=0;$i<30;$i++){
+			 if(strlen($topkey[$i])>0){
+			echo ' <li><span class="num'.$numclass.'"></span><a target="_blank" href="'.huoduansourl($topkey[$i]).'">'.$topkey[$i].'</a></li>'; 	} 
+		 }
+	 ?></ul>
+       </article></li>
+      <li class="layout_li">
+       <article class="topic_main">
+	   <section class="topic_post">
+	   <a target="_blank" href="#" rel="bookmark" class="thumbs" title="言情剧">
+          <mip-img layout="container" src="http://db577.cn/style/images/j2.jpg"></mip-img></a>
+		  <h2><strong>最新言情剧</strong></h2>
+         <div class="excerpt">
+        中青创头条言情剧频道，爱情为核心，克服各种阻力而相爱，以幸福美满或悲剧性离散的结局的电视剧。
+         </div>
+         <div class="postinfo">
+          <div class="left">
+           <span class="author"><a href="#" ><i class="icon icon-user-1"></i>中青创小编</a></span>
+           <span class="date"><i class="icon icon-calendar-1"></i><b><?php echo date("Y-m-d H:i",time()); ?></b></span>
+          </div>
+          <div class="right">
+           <span class="view"><i class="icon icon-eye-1"></i><b>954687</b></span>
+          </div>
+         </div>
+        </section>
+		    <ul class="middle-text1"> <?php 
+	     $topkey = huoduan_get_baidu_top($huoduan['hotcachetime'],350);
+		 for($i=0;$i<30;$i++){
+			 if(strlen($topkey[$i])>0){
+			echo ' <li><span class="num'.$numclass.'"></span><a target="_blank" href="'.huoduansourl($topkey[$i]).'">'.$topkey[$i].'</a></li>'; 	} 
+		 }
+	 ?></ul>
+       </article></li>
+      <li class="layout_li">
+       <article class="topic_main">
+	   <section class="topic_post">
+	   <a target="_blank" href="#" rel="bookmark" class="thumbs" title="古装剧">
+          <mip-img layout="container" src="http://db577.cn/style/images/j3.jpg"></mip-img></a>
+		  <h2><strong>最新古装剧</strong></h2>
+         <div class="excerpt">
+        中青创头条古装剧频道，穿着古装并模仿古人习惯的电视剧，题材类型大致可分为武侠剧，历史剧，神话剧等。
+         </div>
+         <div class="postinfo">
+          <div class="left">
+           <span class="author"><a href="#" ><i class="icon icon-user-1"></i>中青创小编</a></span>
+           <span class="date"><i class="icon icon-calendar-1"></i><b><?php echo date("Y-m-d H:i",time()); ?></b></span>
+          </div>
+          <div class="right">
+           <span class="view"><i class="icon icon-eye-1"></i><b>453890</b></span>
+          </div>
+         </div>
+        </section>
+		    <ul class="middle-text1"> <?php 
+	     $topkey = huoduan_get_baidu_top($huoduan['hotcachetime'],351);
+		 for($i=0;$i<30;$i++){
+			 if(strlen($topkey[$i])>0){
+			echo ' <li><span class="num'.$numclass.'"></span><a target="_blank" href="'.huoduansourl($topkey[$i]).'">'.$topkey[$i].'</a></li>'; 	} 
+		 }
+	 ?></ul>
+       </article></li>
+	   	         <li class="layout_li">
+       <article class="topic_main">
+	   <section class="topic_post">
+	   <a target="_blank" href="#" rel="bookmark" class="thumbs" title="武侠剧">
+          <mip-img layout="container" src="http://db577.cn/style/images/j11.jpg"></mip-img></a>
+		  <h2><strong>最新武侠剧</strong></h2>
+         <div class="excerpt">
+        中青创头条武侠剧频道，八零九零后都是看着古装武侠剧长大的，武侠剧可以说是伴随了我们整个童年少年甚至青年。
+         </div>
+         <div class="postinfo">
+          <div class="left">
+           <span class="author"><a href="#" ><i class="icon icon-user-1"></i>中青创小编</a></span>
+           <span class="date"><i class="icon icon-calendar-1"></i><b><?php echo date("Y-m-d H:i",time()); ?></b></span>
+          </div>
+          <div class="right">
+           <span class="view"><i class="icon icon-eye-1"></i><b>760630</b></span>
+          </div>
+         </div>
+        </section>
+		   <ul class="middle-text1"> <?php 
+	     $topkey = huoduan_get_baidu_top($huoduan['hotcachetime'],1586);
+		 for($i=0;$i<30;$i++){
+			 if(strlen($topkey[$i])>0){
+			echo ' <li><span class="num'.$numclass.'"></span><a target="_blank" href="'.huoduansourl($topkey[$i]).'">'.$topkey[$i].'</a></li>'; 	} 
+		 }
+	 ?></ul>
+       </article></li>
+      <li class="layout_li">
+       <article class="topic_main">
+	   <section class="topic_post">
+	   <a target="_blank" href="#" rel="bookmark" class="thumbs" title="家庭伦理">
+          <mip-img layout="container" src="http://db577.cn/style/images/j4.jpg"></mip-img></a>
+		  <h2><strong>最新家庭伦理</strong></h2>
+         <div class="excerpt">
+        中青创头条家庭伦理频道，以反映社会伦理，道德问题为其主要内容的通俗剧，或者说，社会道德伦理为内容的电视剧。
+         </div>
+         <div class="postinfo">
+          <div class="left">
+           <span class="author"><a href="#" ><i class="icon icon-user-1"></i>中青创小编</a></span>
+           <span class="date"><i class="icon icon-calendar-1"></i><b><?php echo date("Y-m-d H:i",time()); ?></b></span>
+          </div>
+          <div class="right">
+           <span class="view"><i class="icon icon-eye-1"></i><b>731028</b></span>
+          </div>
+         </div>
+        </section>
+		    <ul class="middle-text1"> <?php 
+	     $topkey = huoduan_get_baidu_top($huoduan['hotcachetime'],448);
+		 for($i=0;$i<30;$i++){
+			 if(strlen($topkey[$i])>0){
+			echo ' <li><span class="num'.$numclass.'"></span><a target="_blank" href="'.huoduansourl($topkey[$i]).'">'.$topkey[$i].'</a></li>'; 	} 
+		 }
+	 ?></ul>
+       </article></li>
+      <li class="layout_li">
+       <article class="topic_main">
+	   <section class="topic_post">
+	   <a target="_blank" href="#" rel="bookmark" class="thumbs" title="美剧">
+          <mip-img layout="container" src="http://db577.cn/style/images/j5.jpg"></mip-img></a>
+		  <h2><strong>最新美剧</strong></h2>
+         <div class="excerpt">
+        中青创头条美剧频道，美剧是中国人对美国电视及网络剧集的简称，广义上涵盖美国所有视听节目。
+         </div>
+         <div class="postinfo">
+          <div class="left">
+           <span class="author"><a href="#" ><i class="icon icon-user-1"></i>中青创小编</a></span>
+           <span class="date"><i class="icon icon-calendar-1"></i><b><?php echo date("Y-m-d H:i",time()); ?></b></span>
+          </div>
+          <div class="right">
+           <span class="view"><i class="icon icon-eye-1"></i><b>834609</b></span>
+          </div>
+         </div>
+        </section>
+		    <ul class="middle-text1"> <?php 
+	     $topkey = huoduan_get_baidu_top($huoduan['hotcachetime'],452);
+		 for($i=0;$i<30;$i++){
+			 if(strlen($topkey[$i])>0){
+			echo ' <li><span class="num'.$numclass.'"></span><a target="_blank" href="'.huoduansourl($topkey[$i]).'">'.$topkey[$i].'</a></li>'; 	} 
+		 }
+	 ?></ul>
+       </article></li>
+      <li class="layout_li">
+       <article class="topic_main">
+	   <section class="topic_post">
+	   <a target="_blank" href="#" rel="bookmark" class="thumbs" title="韩剧">
+          <mip-img layout="container" src="http://db577.cn/style/images/j6.jpg"></mip-img></a>
+		  <h2><strong>最新韩剧</strong></h2>
+         <div class="excerpt">
+        中青创头条韩剧频道，韩剧的模式是边拍边播，主要类型是爱情，其次有喜剧、奇幻、穿越、动作等。
+         </div>
+         <div class="postinfo">
+          <div class="left">
+           <span class="author"><a href="#" ><i class="icon icon-user-1"></i>中青创小编</a></span>
+           <span class="date"><i class="icon icon-calendar-1"></i><b><?php echo date("Y-m-d H:i",time()); ?></b></span>
+          </div>
+          <div class="right">
+           <span class="view"><i class="icon icon-eye-1"></i><b>638286</b></span>
+          </div>
+         </div>
+        </section>
+		    <ul class="middle-text1"> <?php 
+	     $topkey = huoduan_get_baidu_top($huoduan['hotcachetime'],453);
+		 for($i=0;$i<30;$i++){
+			 if(strlen($topkey[$i])>0){
+			echo ' <li><span class="num'.$numclass.'"></span><a target="_blank" href="'.huoduansourl($topkey[$i]).'">'.$topkey[$i].'</a></li>'; 	} 
+		 }
+	 ?></ul>
+       </article></li>
+	         <li class="layout_li">
+       <article class="topic_main">
+	   <section class="topic_post">
+	   <a target="_blank" href="#" rel="bookmark" class="thumbs" title="日剧">
+          <mip-img layout="container" src="http://db577.cn/style/images/j7.jpg"></mip-img></a>
+		  <h2><strong>最新日剧</strong></h2>
+         <div class="excerpt">
+        中青创头条日剧频道，日本电视剧和东亚地区其他国家一样，都是小规模制作，多为室内外小布景和电脑合成。
+         </div>
+         <div class="postinfo">
+          <div class="left">
+           <span class="author"><a href="#" ><i class="icon icon-user-1"></i>中青创小编</a></span>
+           <span class="date"><i class="icon icon-calendar-1"></i><b><?php echo date("Y-m-d H:i",time()); ?></b></span>
+          </div>
+          <div class="right">
+           <span class="view"><i class="icon icon-eye-1"></i><b>760630</b></span>
+          </div>
+         </div>
+        </section>
+		   <ul class="middle-text1"> <?php 
+	     $topkey = huoduan_get_baidu_top($huoduan['hotcachetime'],466);
+		 for($i=0;$i<30;$i++){
+			 if(strlen($topkey[$i])>0){
+			echo ' <li><span class="num'.$numclass.'"></span><a target="_blank" href="'.huoduansourl($topkey[$i]).'">'.$topkey[$i].'</a></li>'; 	} 
+		 }
+	 ?></ul>
+       </article></li>
+	         <li class="layout_li">
+       <article class="topic_main">
+	   <section class="topic_post">
+	   <a target="_blank" href="#" rel="bookmark" class="thumbs" title="港剧">
+          <mip-img layout="container" src="http://db577.cn/style/images/j8.jpg"></mip-img></a>
+		  <h2><strong>最新港剧</strong></h2>
+         <div class="excerpt">
+        中青创头条港剧频道，免费提供最新由网络上收集的的粤语资讯，粤语电影，最新港剧，翡翠台排行等。
+         </div>
+         <div class="postinfo">
+          <div class="left">
+           <span class="author"><a href="#" ><i class="icon icon-user-1"></i>中青创小编</a></span>
+           <span class="date"><i class="icon icon-calendar-1"></i><b><?php echo date("Y-m-d H:i",time()); ?></b></span>
+          </div>
+          <div class="right">
+           <span class="view"><i class="icon icon-eye-1"></i><b>760630</b></span>
+          </div>
+         </div>
+        </section>
+		   <ul class="middle-text1"> <?php 
+	     $topkey = huoduan_get_baidu_top($huoduan['hotcachetime'],464);
+		 for($i=0;$i<30;$i++){
+			 if(strlen($topkey[$i])>0){
+			echo ' <li><span class="num'.$numclass.'"></span><a target="_blank" href="'.huoduansourl($topkey[$i]).'">'.$topkey[$i].'</a></li>'; 	} 
+		 }
+	 ?></ul>
+       </article></li>
+	         <li class="layout_li">
+       <article class="topic_main">
+	   <section class="topic_post">
+	   <a target="_blank" href="#" rel="bookmark" class="thumbs" title="台剧">
+          <mip-img layout="container" src="http://db577.cn/style/images/j9.jpg"></mip-img></a>
+		  <h2><strong>最新台剧</strong></h2>
+         <div class="excerpt">
+        中青创头条台剧频道，指台湾的电视台或电视节目制作公司制作的电视剧，浪漫的爱情故事，型男靓女是台剧最大亮点。
+         </div>
+         <div class="postinfo">
+          <div class="left">
+           <span class="author"><a href="#" ><i class="icon icon-user-1"></i>中青创小编</a></span>
+           <span class="date"><i class="icon icon-calendar-1"></i><b><?php echo date("Y-m-d H:i",time()); ?></b></span>
+          </div>
+          <div class="right">
+           <span class="view"><i class="icon icon-eye-1"></i><b>760630</b></span>
+          </div>
+         </div>
+        </section>
+		   <ul class="middle-text1"> <?php 
+	     $topkey = huoduan_get_baidu_top($huoduan['hotcachetime'],465);
+		 for($i=0;$i<30;$i++){
+			 if(strlen($topkey[$i])>0){
+			echo ' <li><span class="num'.$numclass.'"></span><a target="_blank" href="'.huoduansourl($topkey[$i]).'">'.$topkey[$i].'</a></li>'; 	} 
+		 }
+	 ?></ul>
+       </article></li>
+	         <li class="layout_li">
+       <article class="topic_main">
+	   <section class="topic_post">
+	   <a target="_blank" href="#" rel="bookmark" class="thumbs" title="泰剧">
+          <mip-img layout="container" src="http://db577.cn/style/images/j10.jpg"></mip-img></a>
+		  <h2><strong>最新泰剧</strong></h2>
+         <div class="excerpt">
+        中青创头条泰剧频道，泰国电视剧多从家族矛盾出发，讲述一段揪心虐恋，泰剧比引进价格居高不下的韩剧更加物美价廉。
+         </div>
+         <div class="postinfo">
+          <div class="left">
+           <span class="author"><a href="#" ><i class="icon icon-user-1"></i>中青创小编</a></span>
+           <span class="date"><i class="icon icon-calendar-1"></i><b><?php echo date("Y-m-d H:i",time()); ?></b></span>
+          </div>
+          <div class="right">
+           <span class="view"><i class="icon icon-eye-1"></i><b>760630</b></span>
+          </div>
+         </div>
+        </section>
+		   <ul class="middle-text1"> <?php 
+	     $topkey = huoduan_get_baidu_top($huoduan['hotcachetime'],467);
+		 for($i=0;$i<30;$i++){
+			 if(strlen($topkey[$i])>0){
+			echo ' <li><span class="num'.$numclass.'"></span><a target="_blank" href="'.huoduansourl($topkey[$i]).'">'.$topkey[$i].'</a></li>'; 	} 
+		 }
+	 ?></ul>
+       </article></li>
+     </ul>
+    </section>
+    <section class="video_list ">
+	 
+    </section>
+   </div>
+  </main><p class="middle-text">
+     &copy; 2019-2022 中青创头条 版权所有 <a data-type="mip" href="http://www.beian.miit.gov.cn" rel="nofollow" target="_blank" data-title="京ICP备11016050号-1">京ICP备11016050号-1</a> <a data-type="mip" href="http://db577.cn/sitemap/" data-title="xml地图">XML</a>
+</p>
+  <mip-lightbox id="menu" layout="nodisplay" class="mip-hidden">
+   <div class="lightbox">
+    <nav class="m_menu">
+     <ul class="menu">
+       <li class="current-menu-item"><a href="http://db577.cn/" data-type="mip" data- title="首页">首页</a></li>
+       <li><a href="http://db577.cn/movie/" data-type="mip" data-title="电影推荐" title="电影推荐">电影推荐</a></li>
+       <li><a href="http://db577.cn/tv/" data-type="mip" data-title="电视热剧" title="电视热剧">电视热剧</a></li>
+       <li><a href="http://db577.cn/variety/" data-type="mip" data-title="综艺节目" title="综艺节目">综艺节目</a></li>
+       <li><a href="http://db577.cn/comic/" data-type="mip" data-title="必看动漫" title="必看动漫">必看动漫</a></li>
+       <li><a href="http://db577.cn/novel/" data-type="mip" data-title="小说推荐" title="小说推荐">小说推荐</a></li>
+       <li><a href="http://db577.cn/game/" data-type="mip" data-title="游戏达人" title="游戏达人">游戏达人</a></li>
+       <li><a href="http://db577.cn/character/" data-type="mip" data-title="公众人物" title="公众人物">公众人物</a></li>
+       <li><a href="http://db577.cn/automobile/" data-type="mip" data-title="汽车盘点" title="汽车盘点">汽车盘点</a></li>
+       <li><a href="http://db577.cn/life/" data-type="mip" data-title="品味生活" title="品味生活">品味生活</a></li>
+       <li><a href="http://db577.cn/science/" data-type="mip" data-title="最新科技" title="最新科技">最新科技</a></li>
+       <li><a href="http://db577.cn/tourism/" data-type="mip" data-title="旅游时光" title="旅游时光">旅游时光</a></li>
+       <li></li>
+     </ul>
+    </nav>
+    <span on="tap:menu.toggle" class="close lightbox-close">×</span>
+   </div>
+  </mip-lightbox>
+  <mip-lightbox id="search" layout="nodisplay" class="mip-hidden">
+   <div class="lightbox">
+    <article class="search popup">
+     <section class="popup_main">
+      <mip-form method="get" class="search_form" url="http://db577.cn/plus/search.php" action="http://db577.cn/plus/search.php">
+       <input name="q" type="text" class="text_input" placeholder="输入关键字…" />
+       <input type="submit" class="search_btn" value="搜索" />
+      </mip-form>
+      <span on="tap:search.toggle" class="close lightbox-close">×</span>
+     </section>
+    </article>
+   </div>
+  </mip-lightbox>
+  <script src="https://c.mipcdn.com/static/v1/mip.js"></script>
+  <script src="https://c.mipcdn.com/static/v1/mip-stats-baidu/mip-stats-baidu.js"></script>
+  <mip-stats-baidu token="d457b82f8420e8581b24c8b0cc14ee1c"></mip-stats-baidu>
+  <script src="https://c.mipcdn.com/static/v1/mip-gototop/mip-gototop.js" type="text/javascript" charset="utf-8"></script>
+  <script src="https://c.mipcdn.com/static/v1/mip-fixed/mip-fixed.js" type="text/javascript" charset="utf-8"></script>
+  <script src="https://c.mipcdn.com/extensions/platform/v1/mip-cambrian/mip-cambrian.js"></script>
+  <script src="https://c.mipcdn.com/static/v1/mip-lightbox/mip-lightbox.js"></script>
+  <script src="https://c.mipcdn.com/static/v1/mip-share/mip-share.js"></script>
+  <script src="https://c.mipcdn.com/static/v1/mip-vd-tabs/mip-vd-tabs.js"></script>
+  <script src="https://c.mipcdn.com/static/v1/mip-form/mip-form.js"></script>
+ </body>
+</html>

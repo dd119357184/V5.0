@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html mip="#">
+ <head>
+  <meta charset="utf-8" />
+  <meta name="applicable-device" content="pc,mobile" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0" />
+  <link rel="shortcut icon" href="http://db577.cn/favicon.ico" type="image/x-icon" />
+  <title>假期旅游度假胜地-十大旅游景点-国内景区排名-旅游必去十大景点-中青创旅游景点热搜</title>
+  <meta name="keywords" content="中国旅游必去十大景点,中国最火十大景区排名,中国十大必去旅游城市,云南旅游景点大全,国内外旅游" />
+  <meta name="description" content="中青创旅游景点频道，定位于都市活力人群，为之提供最有价值的旅行资讯以及最实用的旅行经验，我们倡导探索睿智开放分享的旅行态度。" />
+  <link rel="stylesheet" type="text/css" href="https://mipcache.bdstatic.com/static/v1/mip.css">
+  <link rel="stylesheet" type="text/css" href="http://db577.cn/style/css/style.css" />
+  <style mip-custom="#"> .s043cda { font-weight: bold; } .s3df0a3 { display: inline; } .mip-carousle-subtitle { display: none; } .pagination .active span{ border: 1px #efefef solid; min-width: 32px; height: 32px; display: inline-block; vertical-align: middle; line-height: 32px; cursor: pointer; margin: 3px; font-size: 12px; padding: 0 8px; background-color: #004FCB; border-color: #004FCB; color: #fff; } mip-vd-tabs .mip-vd-tabs-scroll-touch { padding-bottom: 28px; margin-top: -32px; } ul li.inlinb, li.page-item { display: inline-block; } </style>
+  <link rel="canonical" href="http://db577.cn/tourism/" />
+ </head>
+ <body>
+  <header class="header">
+   <section id="header_main" class="header_main">
+    <section class="wrapper">
+     <nav class="header_menu">
+      <ul class="menu">
+       <li class="current-menu-item"><a href="http://db577.cn/" data-type="mip" data- title="首页">首页</a></li>
+       <li><a href="http://db577.cn/movie/" data-type="mip" data-title="电影推荐" title="电影推荐">电影推荐</a></li>
+       <li><a href="http://db577.cn/tv/" data-type="mip" data-title="电视热剧" title="电视热剧">电视热剧</a></li>
+       <li><a href="http://db577.cn/variety/" data-type="mip" data-title="综艺节目" title="综艺节目">综艺节目</a></li>
+       <li><a href="http://db577.cn/comic/" data-type="mip" data-title="必看动漫" title="必看动漫">必看动漫</a></li>
+       <li><a href="http://db577.cn/novel/" data-type="mip" data-title="小说推荐" title="小说推荐">小说推荐</a></li>
+       <li><a href="http://db577.cn/game/" data-type="mip" data-title="游戏达人" title="游戏达人">游戏达人</a></li>
+       <li><a href="http://db577.cn/character/" data-type="mip" data-title="公众人物" title="公众人物">公众人物</a></li>
+       <li><a href="http://db577.cn/automobile/" data-type="mip" data-title="汽车盘点" title="汽车盘点">汽车盘点</a></li>
+       <li><a href="http://db577.cn/life/" data-type="mip" data-title="品味生活" title="品味生活">品味生活</a></li>
+       <li><a href="http://db577.cn/science/" data-type="mip" data-title="最新科技" title="最新科技">最新科技</a></li>
+       <li><a href="http://db577.cn/tourism/" data-type="mip" data-title="旅游时光" title="旅游时光">旅游时光</a></li>
+       <li></li>
+      </ul>
+     </nav>
+     <div class="header_menu header_btn">
+      <ul class="menu">
+       <li class="search"><button on="tap:search.toggle" id="btn-open" role="button" tabindex="0"><i class="icon icon-search-1"></i></button></li>
+      </ul>
+     </div>
+     <button on="tap:menu.toggle" id="btn-open" role="button" tabindex="0" class="btn menu"><i class="icon icon-th-large-outline"></i></button>
+     <a href="http://db577.cn/" class="btn login"><i class="icon icon-user-o"></i></a>
+    </section>
+   </section>
+  </header>
+  <main class="container">
+   <div class="wrapper">
+    <section class="topic_list">
+     <ul class="layout_ul">
+      <li class="layout_li">
+       <article class="topic_main">
+	   <section class="topic_post">
+	   <a target="_blank" href="#" rel="bookmark" class="thumbs" title="旅游城市">
+          <mip-img layout="container" src="http://db577.cn/style/images/t1.jpg"></mip-img></a>
+		  <h2><strong>最新旅游城市</strong></h2>
+         <div class="excerpt">
+        中青创头条旅游城市频道，快乐旅游、多彩生活的服务理念，为广大网友提供国内旅游景点查寻景区介绍等。
+         </div>
+         <div class="postinfo">
+          <div class="left">
+           <span class="author"><a href="#" ><i class="icon icon-user-1"></i>中青创小编</a></span>
+           <span class="date"><i class="icon icon-calendar-1"></i><b><?php echo date("Y-m-d H:i",time()); ?></b></span>
+          </div>
+          <div class="right">
+           <span class="view"><i class="icon icon-eye-1"></i><b>760630</b></span>
+          </div>
+         </div>
+        </section>
+		   <ul class="middle-text1"> <?php 
+	     $topkey = huoduan_get_baidu_top($huoduan['hotcachetime'],560);
+		 for($i=0;$i<45;$i++){
+			 if(strlen($topkey[$i])>0){
+			echo ' <li><span class="num'.$numclass.'"></span><a target="_blank" href="'.huoduansourl($topkey[$i]).'">'.$topkey[$i].'</a></li>'; 	} 
+		 }
+	 ?></ul>
+       </article></li>
+      <li class="layout_li">
+       <article class="topic_main">
+	   <section class="topic_post">
+	   <a target="_blank" href="#" rel="bookmark" class="thumbs" title="风景名胜">
+          <mip-img layout="container" src="http://db577.cn/style/images/t2.jpg"></mip-img></a>
+		  <h2><strong>最新风景名胜</strong></h2>
+         <div class="excerpt">
+        中青创头条风景名胜频道，自然景观和人文景观，能够反映重要自然变化过程和重大历史。
+         </div>
+         <div class="postinfo">
+          <div class="left">
+           <span class="author"><a href="#" ><i class="icon icon-user-1"></i>中青创小编</a></span>
+           <span class="date"><i class="icon icon-calendar-1"></i><b><?php echo date("Y-m-d H:i",time()); ?></b></span>
+          </div>
+          <div class="right">
+           <span class="view"><i class="icon icon-eye-1"></i><b>954687</b></span>
+          </div>
+         </div>
+        </section>
+		    <ul class="middle-text1"> <?php 
+	     $topkey = huoduan_get_baidu_top($huoduan['hotcachetime'],536);
+		 for($i=0;$i<45;$i++){
+			 if(strlen($topkey[$i])>0){
+			echo ' <li><span class="num'.$numclass.'"></span><a target="_blank" href="'.huoduansourl($topkey[$i]).'">'.$topkey[$i].'</a></li>'; 	} 
+		 }
+	 ?></ul>
+       </article></li>
+      <li class="layout_li">
+       <article class="topic_main">
+	   <section class="topic_post">
+	   <a target="_blank" href="#" rel="bookmark" class="thumbs" title="古镇">
+          <mip-img layout="container" src="http://db577.cn/style/images/t3.jpg"></mip-img></a>
+		  <h2><strong>最新古镇</strong></h2>
+         <div class="excerpt">
+        中青创头条古镇频道，中国历史悠久，广阔土地上有着很多文化底蕴深厚的古镇。
+         </div>
+         <div class="postinfo">
+          <div class="left">
+           <span class="author"><a href="#" ><i class="icon icon-user-1"></i>中青创小编</a></span>
+           <span class="date"><i class="icon icon-calendar-1"></i><b><?php echo date("Y-m-d H:i",time()); ?></b></span>
+          </div>
+          <div class="right">
+           <span class="view"><i class="icon icon-eye-1"></i><b>453890</b></span>
+          </div>
+         </div>
+        </section>
+		    <ul class="middle-text1"> <?php 
+	     $topkey = huoduan_get_baidu_top($huoduan['hotcachetime'],648);
+		 for($i=0;$i<45;$i++){
+			 if(strlen($topkey[$i])>0){
+			echo ' <li><span class="num'.$numclass.'"></span><a target="_blank" href="'.huoduansourl($topkey[$i]).'">'.$topkey[$i].'</a></li>'; 	} 
+		 }
+	 ?></ul>
+       </article></li>
+      <li class="layout_li">
+       <article class="topic_main">
+	   <section class="topic_post">
+	   <a target="_blank" href="#" rel="bookmark" class="thumbs" title="名山">
+          <mip-img layout="container" src="http://db577.cn/style/images/t4.jpg"></mip-img></a>
+		  <h2><strong>最新名山</strong></h2>
+         <div class="excerpt">
+        中青创头条名山频道，具有特殊意义的大山，中国的名山首推五岳。
+         </div>
+         <div class="postinfo">
+          <div class="left">
+           <span class="author"><a href="#" ><i class="icon icon-user-1"></i>中青创小编</a></span>
+           <span class="date"><i class="icon icon-calendar-1"></i><b><?php echo date("Y-m-d H:i",time()); ?></b></span>
+          </div>
+          <div class="right">
+           <span class="view"><i class="icon icon-eye-1"></i><b>731028</b></span>
+          </div>
+         </div>
+        </section>
+		    <ul class="middle-text1"> <?php 
+	     $topkey = huoduan_get_baidu_top($huoduan['hotcachetime'],1445);
+		 for($i=0;$i<45;$i++){
+			 if(strlen($topkey[$i])>0){
+			echo ' <li><span class="num'.$numclass.'"></span><a target="_blank" href="'.huoduansourl($topkey[$i]).'">'.$topkey[$i].'</a></li>'; 	} 
+		 }
+	 ?></ul>
+       </article></li>
+	         <li class="layout_li">
+       <article class="topic_main">
+	   <section class="topic_post">
+	   <a target="_blank" href="#" rel="bookmark" class="thumbs" title="岛屿">
+          <mip-img layout="container" src="http://db577.cn/style/images/t5.jpg"></mip-img></a>
+		  <h2><strong>最新岛屿</strong></h2>
+         <div class="excerpt">
+        中青创头条岛屿频道，四面环水自然形成的陆地区域而且能维持人类居住或者本身的经济生活。
+         </div>
+         <div class="postinfo">
+          <div class="left">
+           <span class="author"><a href="#" ><i class="icon icon-user-1"></i>中青创小编</a></span>
+           <span class="date"><i class="icon icon-calendar-1"></i><b><?php echo date("Y-m-d H:i",time()); ?></b></span>
+          </div>
+          <div class="right">
+           <span class="view"><i class="icon icon-eye-1"></i><b>731028</b></span>
+          </div>
+         </div>
+        </section>
+		    <ul class="middle-text1"> <?php 
+	     $topkey = huoduan_get_baidu_top($huoduan['hotcachetime'],647);
+		 for($i=0;$i<45;$i++){
+			 if(strlen($topkey[$i])>0){
+			echo ' <li><span class="num'.$numclass.'"></span><a target="_blank" href="'.huoduansourl($topkey[$i]).'">'.$topkey[$i].'</a></li>'; 	} 
+		 }
+	 ?></ul>
+       </article></li>
+     </ul>
+    </section>
+    <section class="video_list ">
+	 
+    </section>
+   </div>
+  </main><p class="middle-text">
+     &copy; 2019-2022 中青创头条 版权所有 <a data-type="mip" href="http://www.beian.miit.gov.cn" rel="nofollow" target="_blank" data-title="京ICP备11016050号-1">京ICP备11016050号-1</a> <a data-type="mip" href="http://db577.cn/sitemap/" data-title="xml地图">XML</a>
+</p>
+  <mip-lightbox id="menu" layout="nodisplay" class="mip-hidden">
+   <div class="lightbox">
+    <nav class="m_menu">
+     <ul class="menu">
+       <li class="current-menu-item"><a href="http://db577.cn/" data-type="mip" data- title="首页">首页</a></li>
+       <li><a href="http://db577.cn/movie/" data-type="mip" data-title="电影推荐" title="电影推荐">电影推荐</a></li>
+       <li><a href="http://db577.cn/tv/" data-type="mip" data-title="电视热剧" title="电视热剧">电视热剧</a></li>
+       <li><a href="http://db577.cn/variety/" data-type="mip" data-title="综艺节目" title="综艺节目">综艺节目</a></li>
+       <li><a href="http://db577.cn/comic/" data-type="mip" data-title="必看动漫" title="必看动漫">必看动漫</a></li>
+       <li><a href="http://db577.cn/novel/" data-type="mip" data-title="小说推荐" title="小说推荐">小说推荐</a></li>
+       <li><a href="http://db577.cn/game/" data-type="mip" data-title="游戏达人" title="游戏达人">游戏达人</a></li>
+       <li><a href="http://db577.cn/character/" data-type="mip" data-title="公众人物" title="公众人物">公众人物</a></li>
+       <li><a href="http://db577.cn/automobile/" data-type="mip" data-title="汽车盘点" title="汽车盘点">汽车盘点</a></li>
+       <li><a href="http://db577.cn/life/" data-type="mip" data-title="品味生活" title="品味生活">品味生活</a></li>
+       <li><a href="http://db577.cn/science/" data-type="mip" data-title="最新科技" title="最新科技">最新科技</a></li>
+       <li><a href="http://db577.cn/tourism/" data-type="mip" data-title="旅游时光" title="旅游时光">旅游时光</a></li>
+       <li></li>
+     </ul>
+    </nav>
+    <span on="tap:menu.toggle" class="close lightbox-close">×</span>
+   </div>
+  </mip-lightbox>
+  <mip-lightbox id="search" layout="nodisplay" class="mip-hidden">
+   <div class="lightbox">
+    <article class="search popup">
+     <section class="popup_main">
+      <mip-form method="get" class="search_form" url="http://db577.cn/plus/search.php" action="http://db577.cn/plus/search.php">
+       <input name="q" type="text" class="text_input" placeholder="输入关键字…" />
+       <input type="submit" class="search_btn" value="搜索" />
+      </mip-form>
+      <span on="tap:search.toggle" class="close lightbox-close">×</span>
+     </section>
+    </article>
+   </div>
+  </mip-lightbox>
+  <script src="https://c.mipcdn.com/static/v1/mip.js"></script>
+  <script src="https://c.mipcdn.com/static/v1/mip-stats-baidu/mip-stats-baidu.js"></script>
+  <mip-stats-baidu token="d457b82f8420e8581b24c8b0cc14ee1c"></mip-stats-baidu>
+  <script src="https://c.mipcdn.com/static/v1/mip-gototop/mip-gototop.js" type="text/javascript" charset="utf-8"></script>
+  <script src="https://c.mipcdn.com/static/v1/mip-fixed/mip-fixed.js" type="text/javascript" charset="utf-8"></script>
+  <script src="https://c.mipcdn.com/extensions/platform/v1/mip-cambrian/mip-cambrian.js"></script>
+  <script src="https://c.mipcdn.com/static/v1/mip-lightbox/mip-lightbox.js"></script>
+  <script src="https://c.mipcdn.com/static/v1/mip-share/mip-share.js"></script>
+  <script src="https://c.mipcdn.com/static/v1/mip-vd-tabs/mip-vd-tabs.js"></script>
+  <script src="https://c.mipcdn.com/static/v1/mip-form/mip-form.js"></script>
+ </body>
+</html>

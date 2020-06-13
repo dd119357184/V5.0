@@ -1,0 +1,524 @@
+<?php
+if(!defined("a")) exit("Error 001");
+$ip = get_ip();
+
+//判断是不是阿里云绿网监控IP，屏蔽掉
+if(strpos($ip,'121.42.0.')>-1 || strpos($ip,'42.120.145.')>-1){
+	header('HTTP/1.1 404 Not Found');
+    header("status: 404 Not Found");
+	exit;
+}
+$listnum = array('①','②','③','④','⑤','⑥','⑦','⑧','⑨','⑩');
+$myurl = myurl();
+if(isset($_GET['q'])){
+	$q = hd_clearStr($_GET['q']);
+	
+}
+if(strlen($q)<1){
+	header("location: ".SYSPATH);
+	exit;
+}
+if(isset($_GET['cr']) && strlen($_GET['cr'])>1){
+	$q = iconv($_GET['cr'],"utf-8",$q);
+	$gourl = huoduansourl($q);
+	header("HTTP/1.1 301 Moved Permanently");
+    header("location: $gourl");
+    exit;
+}
+
+if(isset($_SERVER['HTTP_REFERER']) && strpos($_SERVER['HTTP_REFERER'],'m.baidu.com') && strpos($q,'%')>-1){
+	$q = urldecode(urldecode($q));
+	$gourl = huoduansourl($q);
+	header("HTTP/1.1 301 Moved Permanently");
+    header("location: $gourl");
+    exit;
+}
+if(isset($_GET['re'])){
+	$q = htmlspecialchars_decode($q);
+	$gourl = huoduansourl($q);
+	header("HTTP/1.1 301 Moved Permanently");
+    header("location: $gourl");
+    exit;
+}
+if(isset($_GET['p'])){
+	$p=$_GET['p'];
+	if($p>50){
+	   $p=50;	
+	}
+	if(REWRITE==1 && strpos(URLRULE2,'{qe}')>-1 && strpos($myurl,'q=')<1&&  strpos($myurl,'more=1')<1){
+		$q = qdecode($q);
+        $q = htmlspecialchars($q);
+	}
+}else{
+	$p=1;
+	if(REWRITE==1 && strpos(URLRULE1,'{qe}')>-1 && strpos($myurl,'q=')<1&&  strpos($myurl,'more=1')<1){
+		$q = qdecode($q);
+        $q = htmlspecialchars($q);
+	}
+}
+$kill=0;
+ $killword = file_get_contents(ROOT_PATH.'/data/huoduan.killword.txt');
+  if(strpos($killword,"\r\n")>-1){
+	$killword = trim($killword,"\r\n");
+	$killwordlist = explode("\r\n",$killword);
+  }else{
+	   $killword = trim($killword,"\n");
+	   $killwordlist = explode("\n",$killword);
+  }
+
+  foreach($killwordlist as $k=>$v){
+	  $b404 = 0;
+	  if(substr($v,0,1)=='~'){
+		 $v = ltrim($v,'~'); 
+		 $b404 = 1;
+	  }
+	  if(substr($v,0,1)=='|'){
+		  $v = ltrim($v,'|');
+		  if(strtolower($q) == strtolower($v)){
+			  $listcount=0;
+			  $kill=1;
+			  $list['count']=0;$list['pnum']=0;
+			  if($b404==1){back404();}
+			  break;
+		  }
+	  }else if(strlen($v)>2){
+		  if(strpos(strtolower($q),strtolower($v))>-1 || strtolower($q) == strtolower($v)){
+			  $listcount=0;
+			  $kill=1;
+			  $list['count']=0;$list['pnum']=0;
+			  if($b404==1){back404();}
+			  break;
+		  }
+	  }
+  }
+
+$s = urlencode($q);
+
+if($huoduan['searchtype']=='baidu'){
+	$list = huoduan_get_baidu($q,$p,$huoduan['cachetime']);
+
+	$listcount = count($list['data']);
+	if($listcount<2){
+		$list = huoduan_get_haosou($q,$p,$huoduan['cachetime']);
+		$listcount = count($list['data']);
+		if($listcount<2){
+			$list = huoduan_get_sogou($q,$p,$huoduan['cachetime']);
+			$listcount = count($list['data']);
+		}
+	}
+}else{
+	$list = huoduan_get_haosou($q,$p,$huoduan['cachetime']);
+	$listcount = count($list['data']);
+	if($listcount<2){
+		$list = huoduan_get_newbaidu($q,$p,$huoduan['cachetime']);
+		$listcount = count($list['data']);
+		if($listcount<2){
+			$list = huoduan_get_sogou($q,$p,$huoduan['cachetime']);
+			$listcount = count($list['data']);
+		}
+	}
+}
+if($huoduan['xg_open']==1){
+	   if(is_array($list['xgdata'])){
+		   $xgdata = $list['xgdata'];
+	   }else{
+		  $xgdata = huoduan_get_baidu_xg($q,$huoduan['cachetime']); 
+	   }
+}
+if(is_array($list)){
+	$description = $q.'相关信息，'.strip_tags($list['data'][1]['title']).strip_tags($list['data'][2]['des']);
+	$description = strip_tags($description);
+	$description = str_replace('"','',$description);
+}
+if($host==strtolower(MOBILEDOMAIN)){
+   	include(ROOT_PATH.'/inc/mobile_search.php');
+	exit;
+}
+
+?>
+<!DOCTYPE html>
+<html mip>
+ <head>
+  <meta charset="utf-8" />
+  <meta name="applicable-device" content="pc,mobile" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0" />
+  <link rel="shortcut icon" href="http://www.chinacye.com.cn/favicon.ico" type="image/x-icon" />
+  <title>聚合有关于<?php echo $q?><?php if($p!=1){echo '第'.$p.'页';}?>的最新文章在线阅读-中青创头条资讯</title>
+  <meta name="keywords" content="<?php echo $q?>" />
+  <meta name="description" content="中青创头条资讯的小青青今天给大家整理了一篇有关<?php echo $q?>的最新文章聚合阅读列表，更多<?php echo $q?>的详细内容，欢迎点击下方阅读列表，获取更多最新信息，爱上阅读就上中青创头条网。" />
+  <link rel="stylesheet" type="text/css" href="https://mipcache.bdstatic.com/static/v1/mip.css">
+  <link rel="stylesheet" type="text/css" href="http://www.chinacye.com.cn/style/css/style.css" />
+  <link rel="canonical" href="http://www.chinacye.com.cn/automobile/<?php echo $q?>.html" />
+   <style mip-custom> .s043cda { font-weight: bold; } .s3df0a3 { display: inline; } .mip-carousle-subtitle { display: none; } .pagination .active span{ border: 1px #efefef solid; min-width: 32px; height: 32px; display: inline-block; vertical-align: middle; line-height: 32px; cursor: pointer; margin: 3px; font-size: 12px; padding: 0 8px; background-color: #004FCB; border-color: #004FCB; color: #fff; } mip-vd-tabs .mip-vd-tabs-scroll-touch { padding-bottom: 28px; margin-top: -32px; } ul li.inlinb, li.page-item { display: inline-block; }
+    .dede_pages{
+}
+.dede_pages ul{
+	float:left;
+	padding:12px 0px 12px 16px;
+    list-style:none;
+}
+.dede_pages ul li{
+	float:left;
+	font-family:Tahoma;
+	line-height:17px;
+	margin-right:6px;
+	font-size:14px; font-family: "Microsoft YaHei", "微软雅黑";-moz-border-radius:5px; -webkit-border-radius:5px;border-radius:5px; margin-right:5px;
+	
+}
+.dede_pages ul li a{
+	float:left;
+	padding:5px 10px 5px;
+	color:#555;
+	display:block;
+	border:1px solid #666; padding:5px 10px; color:#666; font-size:14px; font-family: "Microsoft YaHei", "微软雅黑"; -moz-border-radius:5px; -webkit-border-radius:5px;    border-radius:5px; margin-right:5px;
+}
+.dede_pages ul li a:hover{
+	color:#690;
+	text-decoration:none;
+	padding:5px 10px 5px;
+	border:1px solid #1651b9; background:#1651b9; color:#fff; background:#1651b9;
+}
+.dede_pages ul li.thisclass,
+.dede_pages ul li.thisclass a,.pagebox ul li.thisclass a:hover{
+	background-color:#F8F8F8;
+	padding:5px 10px 5px;
+	font-weight:bold;
+	border:1px solid #1651b9; background:#1651b9; color:#fff; background:#1651b9;
+}
+.dede_pages .pageinfo{
+	line-height:21px;
+	padding:12px 10px 12px 16px;
+	color:#999;
+	
+}
+.dede_pages .pageinfo strong{
+	color:#555;
+	font-weight:normal;
+	margin:0px 2px;
+}
+   </style>
+ </head>
+<body>
+  <header class="header">
+   <section id="header_main" class="header_main">
+    <section class="wrapper">
+     <nav class="header_menu">
+      <ul class="menu">
+       <li class="current-menu-item"><a href="http://www.chinacye.com.cn/" data-type="mip" data- title="首页">首页</a></li>
+       <li><a href="http://www.chinacye.com.cn/movie/" data-type="mip" data-title="电影推荐" title="电影推荐">电影推荐</a></li>
+       <li><a href="http://www.chinacye.com.cn/tv/" data-type="mip" data-title="电视热剧" title="电视热剧">电视热剧</a></li>
+       <li><a href="http://www.chinacye.com.cn/variety/" data-type="mip" data-title="综艺节目" title="综艺节目">综艺节目</a></li>
+       <li><a href="http://www.chinacye.com.cn/comic/" data-type="mip" data-title="必看动漫" title="必看动漫">必看动漫</a></li>
+       <li><a href="http://www.chinacye.com.cn/novel/" data-type="mip" data-title="小说推荐" title="小说推荐">小说推荐</a></li>
+       <li><a href="http://www.chinacye.com.cn/game/" data-type="mip" data-title="游戏达人" title="游戏达人">游戏达人</a></li>
+       <li><a href="http://www.chinacye.com.cn/character/" data-type="mip" data-title="公众人物" title="公众人物">公众人物</a></li>
+       <li><a href="http://www.chinacye.com.cn/automobile/" data-type="mip" data-title="汽车盘点" title="汽车盘点">汽车盘点</a></li>
+       <li><a href="http://www.chinacye.com.cn/life/" data-type="mip" data-title="品味生活" title="品味生活">品味生活</a></li>
+       <li><a href="http://www.chinacye.com.cn/science/" data-type="mip" data-title="最新科技" title="最新科技">最新科技</a></li>
+       <li><a href="http://www.chinacye.com.cn/tourism/" data-type="mip" data-title="旅游时光" title="旅游时光">旅游时光</a></li>
+       <li></li>
+      </ul>
+     </nav>
+     <div class="header_menu header_btn">
+      <ul class="menu">
+       <li class="search"><button on="tap:search.toggle" id="btn-open" role="button" tabindex="0"><i class="icon icon-search-1"></i></button></li>
+      </ul>
+     </div>
+     <button on="tap:menu.toggle" id="btn-open" role="button" tabindex="0" class="btn menu"><i class="icon icon-th-large-outline"></i></button>
+     <a href="http://www.chinacye.com.cn/" class="btn login"><i class="icon icon-user-o"></i></a>
+    </section>
+   </section>
+  </header>
+  <main class="container">
+   <div class="wrapper">
+    <section class="content">
+     <section class="content_left home">
+      <mip-vd-tabs allow-scroll="">
+       <section>
+        <h1>关于<?php echo $q?><?php if($p!=1){echo '第'.$p.'页';}?>的最新文章在线阅读</h1>
+       </section>
+       <div>
+	   <article class="post_main post_blog">
+	   <div class="content_post">
+	   <p>时间：<?php echo date("Y-m-d H:i",time()); ?> 来源：中青创头条 作者：小青青</p>
+	   <p>中青创头条资讯的小青青今天给大家整理了一篇有关<?php echo $q?>的最新文章聚合阅读列表，更多<?php echo $q?>的详细内容，欢迎点击下方阅读列表，获取更多最新信息，爱上阅读就上中青创头条网。</p>
+	   <mip-img layout="container" alt="<?php echo $q?>" src="http://www.chinacye.com.cn/style/images/wc.jpg"></mip-img></div>
+ <?php
+if($listcount>1&& $kill!=1){
+	
+  include(ROOT_PATH.'/data/huoduan.ads.php');
+    $countstr = '';
+  if(isset($list['count']) && $list['count']>0){
+	 $countstr = ''; 
+  }
+  echo '';
+  echo '';
+   include(ROOT_PATH.'/inc/plus.php');
+  
+  for($i=0;$i<$listcount;$i++){
+		$ii = $i;
+		$ni = $i;
+		if($listcount==10){
+			$sort = explode(',',$huoduan['sort']);
+			$ni = $sort[$i]-1;
+		}
+
+		if(is_array($plusnum)){
+			foreach($plusnum as $k=>$v){
+				if($pluscontent[$k]!='' && ($ii+1)==$v && ($plususer[$k]==2 || $plususer[$k]==1)){
+					echo $pluscontent[$k];
+					
+				}
+			}
+		}
+		if(($ii+1)==$ads['search']){
+			include(ROOT_PATH.'/data/huoduan.ads_search.php');
+		}
+		$yurl = isset($list['data'][$ni]['blink'])?$list['data'][$ni]['blink']:'';
+		$blink = trim($yurl);
+		include(ROOT_PATH.'/inc/seturl.php');
+		
+		$gourl = qencode($list['data'][$ni]['link']);
+		$gotitle = qencode(strip_tags($list['data'][$ni]['title']));
+		$gokey = qencode($q);
+		
+		 if($huoduan['link_open']==0){
+			 $sourl = $list['data'][$ni]['link'];
+		 }else{
+			 $sourl = SYSPATH.'?a=url&k='.substr(a($gourl.$gotitle.$gokey),0,8).'&u='.$gourl.'&t='.$gotitle.'&s='.$gokey;
+		 }
+
+		if(substr($blink,0,8)=='https://'){
+			$blink ='huoduan|'.$blink ;
+			$blink = str_replace('huoduan|https://','',$blink);
+		}
+		if(substr($blink,0,7)=='http://'){
+			$blink ='huoduan|'.$blink ;
+			$blink = str_replace('huoduan|http://','',$blink);
+		}
+		
+		
+		if(strpos($blink,'&nbsp;')){
+		   $blink = explode('&nbsp;',$blink);
+		   $blink = $blink[0];
+		}
+		
+		$blink = huoduan_msubstr($blink,0,50,true);
+	   $kurl=0;
+	   if(is_file(ROOT_PATH.'/data/huoduan.killurls.txt')){
+		  $killurls = file_get_contents(ROOT_PATH.'/data/huoduan.killurls.txt');
+		  if(strpos($killurls,"\r\n")>-1){
+			$killurls = trim($killurls,"\r\n");
+			$killurlslist = explode("\r\n",$killurls);
+		  }else{
+			   $killurls = trim($killurls,"\n");
+			   $killurlslist = explode("\n",$killurls);
+		  }
+		 
+		  foreach($killurlslist as $k=>$v){
+		
+			  if(substr($v,0,1)=='|'){
+				  $v = ltrim($v,'|');
+				  if(clear_url($yurl) == clear_url($v)){
+					  $kurl=1;
+					  break;
+				  }
+			  }else if(strlen($v)>2){
+				  if(strpos(clear_url($yurl),clear_url($v))>-1 || clear_url($yurl) == clear_url($v)){
+					  $kurl=1;
+					  break;
+				  }
+			  }
+		  }
+	   }
+	  if($kurl!=1 && strlen($list['data'][$ni]['title'])>0 ){
+	  	$list['data'][$ni]['des'] = get_desc($list['data'][$ni]['des']);
+		?>
+	<h2><?php if($huoduan['listnum']==1){?><span class="nums"><?php echo $listnum[$ii]?></span> <?php }?><a href="http://www.chinacye.com.cn<?php echo $sourl?>" target="_blank" class="s" rel="nofollow">[点击阅读]<?php echo $list['data'][$ni]['title']?></a></h2><div class="excerpt"><?php echo date("Y-m-d H:i",time()); ?> 描述：<?php echo $list['data'][$ni]['des']?> 来源：<?php echo huoduan_msubstr($blink,0,60);?></div>
+		<?php	
+	  }
+  }
+  echo '';
+}else{
+	if($kill==1){
+		echo '<div id="result"><div style="padding:30px 10px; text-align:center; color:#F00; font-size:16px;">该关键词已被屏蔽，请更换关键词搜索</div></div>';
+	}else{
+	    echo '<div id="result"><div style="padding:30px 10px; text-align:center; color:#F00; font-size:16px;">对不起，没有找到相关内容！请更换关键词搜索，或刷新本页重试。</div></div>';
+	}
+}
+
+
+?>
+        </article>
+        <nav class="navigation pagination">
+         <div class="nav-links">
+		 <div class="dede_pages">
+		 <ul class=pagelist><?php 
+ if(isset($list['count']) && $list['count']>10 && $kill!=1){
+	 $pagecount = ceil($list['count']/10);
+	 if($pagecount>51){$pagecount=51;}
+	   if($pagecount>10){
+		  if($p<8){
+		    $ii=1;
+		    $jj=11;
+		  }else{
+			$ii= $p-5;
+			$jj = $p+5;
+			
+			if($jj>$pagecount){
+				$jj=$pagecount;
+			}
+			if($jj-$ii<10){
+				$ii = $jj-10;
+			}
+		  }
+	  }else{
+		  $ii=1;
+		  $jj=$pagecount;
+	  }
+	   if($pagecount>0){
+		   if($p>1){
+				echo '<li><a href="'.huoduansourl($q,$p-1).'" title="上一页">上一页</a></li>'; 
+		   }
+		   for($i=$ii;$i<$jj;$i++){
+			   if($i==$p){
+				   echo '<li><a href="'.huoduansourl($q,$i).'" title="第'.$i.'页">'.$i.'</a></li>'; 
+			   }else{
+				   echo '<li><a href="'.huoduansourl($q,$i).'" title="第'.$i.'页">'.$i.'</a></li>'; 
+			   }  
+			}
+			if($p<($jj-1)){
+				echo '<li><a href="'.huoduansourl($q,$p+1).'" title="下一页">下一页</a></li>'; 
+			}
+			
+	   }
+	 
+ }else{
+ 
+   if($list['pnum']>0 && $list['pnum']<11){
+	   $ii=1;
+	   $jj=$list['pnum']+1;
+	   
+   }else if($list['pnum']>10){
+	  
+	  $jj=$list['pnum']+1; 
+	  $ii=$jj-10;
+   }
+   if($list['pnum']>0){
+	   if($p>1){
+			echo '<li><a href="'.huoduansourl($q,$p-1).'" title="上一页">上一页</a></li>'; 
+		   }
+	   for($i=$ii;$i<$jj;$i++){
+		   
+			   if($i==$p){
+				   echo '<li><a href="'.huoduansourl($q,$i).'" title="第'.$i.'页">'.$i.'</a></li>'; 
+			   }else{
+				   echo '<li><a href="'.huoduansourl($q,$i).'" title="第'.$i.'页">'.$i.'</a></li>'; 
+			   }  
+		}
+		if($list['pnext']==1){
+			echo '<li><a href="'.huoduansourl($q,$p+1).'" title="下一页">下一页</a></li>'; 
+		}
+		
+   }
+}
+   ?>
+<?php
+if($huoduan['close_hotlist']!=1){ ?>
+<?php
+} ?>
+<?php
+if($huoduan['close_hotlist']!=1){ ?>
+<?php
+}?>
+</ul>
+</div>
+         </div>
+        </nav>
+       </div>
+      </mip-vd-tabs>
+     </section>
+     <aside class="sidebar">
+      <section class="sidebar_widget widget_posts">
+       <div class="sidebar_title">
+        <h3>相关文章推荐</h3>
+       </div>
+       <section class="author_post">
+        <ul>
+   <?php
+   if($huoduan['xg_open']==1 && $kill!=1){
+	   
+	   if(is_array($xgdata)){
+		   echo '';
+		   
+		   foreach($xgdata as $k=>$v){
+			    if(strlen($v)<100){
+			   echo '<li><a href="'.huoduansourl($v).'">'.$v.'</a></li>';
+				}
+			   if($k==8){break;}
+		   }
+		   echo '';
+	   }
+   }
+
+   ?>
+		</ul>
+       </section>
+      </section>
+     </aside>
+    </section>
+   </div>
+  </main>
+<p class="middle-text">
+     &copy; 2019-2022 中青创头条 版权所有 <a data-type="mip" href="http://www.beian.miit.gov.cn" rel="nofollow" target="_blank" data-title="京ICP备11016050号-1">京ICP备11016050号-1</a> <a data-type="mip" href="http://www.chinacye.com.cn/sitemap/" data-title="xml地图">XML</a>
+</p>
+  <mip-lightbox id="menu" layout="nodisplay" class="mip-hidden">
+   <div class="lightbox">
+    <nav class="m_menu">
+     <ul class="menu">
+       <li class="current-menu-item"><a href="http://www.chinacye.com.cn/" data-type="mip" data- title="首页">首页</a></li>
+       <li><a href="http://www.chinacye.com.cn/movie/" data-type="mip" data-title="电影推荐" title="电影推荐">电影推荐</a></li>
+       <li><a href="http://www.chinacye.com.cn/tv/" data-type="mip" data-title="电视热剧" title="电视热剧">电视热剧</a></li>
+       <li><a href="http://www.chinacye.com.cn/variety/" data-type="mip" data-title="综艺节目" title="综艺节目">综艺节目</a></li>
+       <li><a href="http://www.chinacye.com.cn/comic/" data-type="mip" data-title="必看动漫" title="必看动漫">必看动漫</a></li>
+       <li><a href="http://www.chinacye.com.cn/novel/" data-type="mip" data-title="小说推荐" title="小说推荐">小说推荐</a></li>
+       <li><a href="http://www.chinacye.com.cn/game/" data-type="mip" data-title="游戏达人" title="游戏达人">游戏达人</a></li>
+       <li><a href="http://www.chinacye.com.cn/character/" data-type="mip" data-title="公众人物" title="公众人物">公众人物</a></li>
+       <li><a href="http://www.chinacye.com.cn/automobile/" data-type="mip" data-title="汽车盘点" title="汽车盘点">汽车盘点</a></li>
+       <li><a href="http://www.chinacye.com.cn/life/" data-type="mip" data-title="品味生活" title="品味生活">品味生活</a></li>
+       <li><a href="http://www.chinacye.com.cn/science/" data-type="mip" data-title="最新科技" title="最新科技">最新科技</a></li>
+       <li><a href="http://www.chinacye.com.cn/tourism/" data-type="mip" data-title="旅游时光" title="旅游时光">旅游时光</a></li>
+       <li></li>
+     </ul>
+    </nav>
+    <span on="tap:menu.toggle" class="close lightbox-close">&times;</span>
+   </div>
+  </mip-lightbox>
+  <mip-lightbox id="search" layout="nodisplay" class="mip-hidden">
+   <div class="lightbox">
+    <article class="search popup">
+     <section class="popup_main">
+      <mip-form method="get" class="search_form" url="http://www.chinacye.com.cn/plus/search.php" action="http://www.chinacye.com.cn/plus/search.php">
+       <input name="q" type="text" class="text_input" placeholder="输入关键字…" />
+       <input type="submit" class="search_btn" value="搜索" />
+      </mip-form>
+      <span on="tap:search.toggle" class="close lightbox-close">&times;</span>
+     </section>
+    </article>
+   </div>
+  </mip-lightbox>
+  <script src="https://c.mipcdn.com/static/v1/mip.js"></script>
+  <script src="https://c.mipcdn.com/static/v1/mip-stats-baidu/mip-stats-baidu.js"></script>
+  <mip-stats-baidu token="d457b82f8420e8581b24c8b0cc14ee1c"></mip-stats-baidu>
+  <script src="https://c.mipcdn.com/static/v1/mip-gototop/mip-gototop.js" type="text/javascript" charset="utf-8"></script>
+  <script src="https://c.mipcdn.com/static/v1/mip-fixed/mip-fixed.js" type="text/javascript" charset="utf-8"></script>
+  <script src="https://c.mipcdn.com/extensions/platform/v1/mip-cambrian/mip-cambrian.js"></script>
+  <script src="https://c.mipcdn.com/static/v1/mip-lightbox/mip-lightbox.js"></script>
+  <script src="https://c.mipcdn.com/static/v1/mip-share/mip-share.js"></script>
+  <script src="https://c.mipcdn.com/static/v1/mip-vd-tabs/mip-vd-tabs.js"></script>
+  <script src="https://c.mipcdn.com/static/v1/mip-form/mip-form.js"></script>
+ </body>
+</html>
+</body>
+</html>
